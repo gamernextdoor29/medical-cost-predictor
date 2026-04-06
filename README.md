@@ -104,7 +104,7 @@ Helps assess model bias and variance
 
 Clone the repository:
 
-git clone https://github.com/your-username/medical-cost-predictor.git
+git clone https://github.com/gamernextdoor29/medical-cost-predictor.git
 cd medical-cost-predictor
 
 Install dependencies:
