@@ -35,22 +35,9 @@ X_train, X_test = X_train.align(X_test, join='left', axis=1, fill_value=0)
 
 y_train_log = np.log1p(y_train)
 
-# Define which columns are which
-# num_features = ['age', 'bmi', 'children']
-# cat_features = ['sex', 'smoker', 'region']
-
-# preprocessor = ColumnTransformer(
-#     transformers=[
-#         ('num', StandardScaler(), num_features),
-#         ('cat', OneHotEncoder(drop='first'), cat_features)
-#     ]
-# )
-rf = RandomForestRegressor(n_estimators=200, random_state=42, n_jobs=-1)
-
 pipe = Pipeline([
     ('preprocessing', StandardScaler()),
     ('poly', PolynomialFeatures(degree=2, include_bias=False)),
-    #('selector', RFECV(estimator=rf, step=1, cv=5, scoring='neg_mean_squared_error', n_jobs=-1, verbose=1)),
     #('selector', RFECV(estimator=LinearRegression(), step=1, cv=5, scoring='r2')),
     ('model', LinearRegression())
 ])
@@ -81,6 +68,7 @@ print(per * 100)
 print('code 1')
 
 #VISUALIZATION
+# ploting scatterplot
 plt.figure(figsize=(10, 6))
 sns.scatterplot(x=y_test, y=final_predictions, alpha=0.5)
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], '--r', linewidth=2)
@@ -96,16 +84,6 @@ sns.histplot(residuals, kde=True)
 plt.title('Distribution of Prediction Errors (Residuals)')
 plt.xlabel('Error ($)')
 plt.show()
-
-
-
-
-# dep_columns = ['age', 'sex', 'bmi', 'children', 'smoker', 'region']
-#
-# df_encoded = df.copy()
-# df_encoded['sex'] = df_encoded['sex'].map({'male': 1, 'female': 0})
-# df_encoded['smoker'] = df_encoded['smoker'].map({'yes': 1, 'no': 0})
-# df_encoded['region'] = df_encoded['region'].astype('category').cat.codes
 #
 # for col in dep_columns:
 #     corr, p_value = stats.pearsonr(df_encoded[col], df_encoded['charges'])
