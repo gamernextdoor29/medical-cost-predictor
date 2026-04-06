@@ -13,14 +13,21 @@ Performed exploratory data analysis (EDA)
 Engineered meaningful health-related features
 Applied transformation techniques to improve model performance
 Built a regression pipeline with polynomial features
+
 📂 Project Structure
+
 ├── data/
 │   └── insurance.csv          # Dataset
+
 ├── src/
 │   └── codes.py               # Main modeling code
+
 ├── outputs/
 │   └── (visualizations)       # Generated plots
+
 ├── README.md
+
+
 🧹 Data Preprocessing
 ✅ Missing Values
 
